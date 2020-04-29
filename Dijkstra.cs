@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+// In this file you get not one, but two Dijkstra-like algorithms.
+// One is a runtime pathfinding algorithm, the other is a preprocessing grid->graph algorithm.
+// Watch me write and explain the whole thing here https://youtu.be/lCMJFIleAzg
+
 public class Dijkstra : MonoBehaviour
 {
     public class DijkstraGraph
@@ -38,6 +42,9 @@ public class Dijkstra : MonoBehaviour
         return dg;
     }
 
+    // This function takes a grid where 1s are walls and 0s are empty space
+    // and turns it into a graph. It does this by propgating through the grid using
+    // Dijkstra to traverse the grid.
     public static DijkstraGraph SetupGrid(int width, int height, uint[] grid)
     {
         var dg = new DijkstraGraph();
@@ -224,7 +231,8 @@ public class Dijkstra : MonoBehaviour
 
     protected void Start()
     {
-        // var gri1 = SetupGraph(new string[]{ "A", "B", "C"}, new uint[]{ 0, 1, 15, 1, 2, 30 });
+        // var grid = SetupGraph(new string[]{ "A", "B", "C"}, new uint[]{ 0, 1, 15,
+        //                                                                 1, 2, 30 });
 
         var grid = SetupGrid(5, 5, new uint[] { 0, 0, 0, 0, 0,
                                                 0, 1, 1, 1, 1,
